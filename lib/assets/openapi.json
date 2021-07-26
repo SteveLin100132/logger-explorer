@@ -1,0 +1,153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Logger Explorer",
+        "version": "1.0.0",
+        "title": "API Explorer",
+        "contact": {
+            "email": "steveylin@wistron.com"
+        },
+        "license": {
+            "name": "Apache 2.0"
+        }
+    },
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "ping",
+            "description": "API Testing"
+        },
+        {
+            "name": "logger",
+            "description": "Logger"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/ping": {
+            "post": {
+                "tags": [
+                    "ping"
+                ],
+                "summary": "測試",
+                "description": "測試",
+                "operationId": "ping",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/logs/filename": {
+            "get": {
+                "tags": [
+                    "logger"
+                ],
+                "summary": "取得所有日誌檔名",
+                "description": "取得所有日誌檔名",
+                "operationId": "getLogsFilename",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/logs/content": {
+            "get": {
+                "tags": [
+                    "logger"
+                ],
+                "summary": "取得所有特定日誌",
+                "description": "取得所有特定日誌",
+                "operationId": "getLog",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "description": "日誌檔案名稱",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {},
+    "definitions": {
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
