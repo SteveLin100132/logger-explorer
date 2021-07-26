@@ -79,10 +79,12 @@ export class Api {
   public run(port: number = 3001): void {
     // 日誌管理頁面
     // const root = path.dirname(require.main?.filename || '');
-    // this._server.use(express.static(path.join(root, '../public')));
+    // if (fs.existsSync(path.join(root, '../public'))) {
+    //   this._server.use(express.static(path.join(root, '../public')));
+    // }
     this._server.use(
       express.static(
-        path.join(__dirname, '/node_modules/logger-explorer/public'),
+        path.join(process.cwd(), '/node_modules/logger-explorer/public'),
       ),
     );
 
